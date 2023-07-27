@@ -1,0 +1,10 @@
+#root {
+  min-height: 100vh;
+  background: rgb(0, 246, 255);
+  background: linear-gradient(
+    3deg,
+    rgba(0, 246, 255, 1) 0%,
+    rgba(6, 143, 148, 1) 74%
+  );
+  background-size: cover;
+}
