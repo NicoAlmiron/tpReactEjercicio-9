@@ -12,7 +12,7 @@ import {
 import MostrarPacientes from "./MostrarPacientes";
 
 const AdministradorPacientes = () => {
-  //   const mascotas = JSON.parse(localStorage.getItem("mascotas")) || [];
+  const mascotas = JSON.parse(localStorage.getItem("mascotas")) || [];
 
   const [nombreMascota, setNombreMascota] = useState("");
   const [nombreDueño, setNombreDueño] = useState("");
@@ -22,7 +22,7 @@ const AdministradorPacientes = () => {
   const [minutos, setMinutos] = useState("");
   const [hora, setHora] = useState("");
   const [sintomas, setSintomas] = useState("");
-  const [listaPacientes, setListaPacientes] = useState([]);
+  const [listaPacientes, setListaPacientes] = useState(mascotas);
 
   const arregloFechas = [{ dia: dia, mes: mes, año: año }];
   const arregloHoras = [{ hora: hora, minutos: minutos }];
@@ -46,9 +46,13 @@ const AdministradorPacientes = () => {
 
     setListaPacientes([...listaPacientes, arregloMascotas[0]]);
 
-    // setHoras({});
-    // setFecha({});
-    // setMascota({});
+    setDia("");
+    setMes("");
+    setAño("");
+    setHora("");
+    setMinutos("");
+    setNombreMascota("");
+    setNombreDueño("");
   };
   return (
     <Container>
@@ -161,7 +165,7 @@ const AdministradorPacientes = () => {
           </div>
         </Form>
       </section>
-      <MostrarPacientes></MostrarPacientes>
+      <MostrarPacientes listaPacientes={listaPacientes}></MostrarPacientes>
     </Container>
   );
 };
