@@ -23,6 +23,7 @@ const AdministradorPacientes = () => {
   const [hora, setHora] = useState("");
   const [sintomas, setSintomas] = useState("");
   const [listaPacientes, setListaPacientes] = useState(mascotas);
+  let colorAvatar = "";
 
   const arregloFechas = [{ dia: dia, mes: mes, año: año }];
   const arregloHoras = [{ hora: hora, minutos: minutos }];
@@ -53,8 +54,8 @@ const AdministradorPacientes = () => {
       "verde",
       "blanco",
     ];
-    // setColorAvatar(colores[index]);
-    console.log(colores[index]);
+    colorAvatar = colores[index];
+    return colorAvatar;
   };
 
   const handleSubmit = (e) => {
@@ -68,6 +69,7 @@ const AdministradorPacientes = () => {
     setMinutos("");
     setNombreMascota("");
     setNombreDueño("");
+    colorAvatar = "";
     e.reset();
   };
 
@@ -185,8 +187,10 @@ const AdministradorPacientes = () => {
           </div>
         </Form>
       </section>
-      <MostrarPacientes listaPacientes={listaPacientes}></MostrarPacientes>
-      {/* {colorAleatorio()} */}
+      <MostrarPacientes
+        listaPacientes={listaPacientes}
+        colorAvatar={colorAleatorio}
+      ></MostrarPacientes>
     </Container>
   );
 };
