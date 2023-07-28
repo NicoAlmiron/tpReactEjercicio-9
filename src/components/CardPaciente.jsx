@@ -2,7 +2,12 @@ import React from "react";
 import { Button, Card, Col, Row } from "react-bootstrap";
 import AvatarMascota from "./avatarMascota";
 
-const CardPaciente = ({ listaPacientes, index, colorAvatar }) => {
+const CardPaciente = ({
+  listaPacientes,
+  index,
+  colorAvatar,
+  borrarCardPaciente,
+}) => {
   return (
     <Card
       style={{ width: "16rem" }}
@@ -11,7 +16,7 @@ const CardPaciente = ({ listaPacientes, index, colorAvatar }) => {
       <Card.Header className="d-flex bg-primary">
         <AvatarMascota
           listaPacientes={listaPacientes}
-          colorAvatar={colorAvatar}
+          index={index}
         ></AvatarMascota>
         <div>
           <h5 className="text-white">
@@ -61,7 +66,9 @@ const CardPaciente = ({ listaPacientes, index, colorAvatar }) => {
         <p>Sintomas: descripsion de los sintomas</p> */}
       </Card.Body>
       <Card.Footer className="bg-primary text-end">
-        <Button variant="danger">Borrar</Button>
+        <Button variant="danger" onClick={() => borrarCardPaciente(index)}>
+          Borrar
+        </Button>
       </Card.Footer>
     </Card>
   );

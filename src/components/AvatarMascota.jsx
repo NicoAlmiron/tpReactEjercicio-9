@@ -1,6 +1,6 @@
 import React from "react";
 
-const AvatarMascota = ({ listaPacientes, colorAvatar }) => {
+const AvatarMascota = ({ listaPacientes, index }) => {
   return (
     <div
       style={{
@@ -8,7 +8,7 @@ const AvatarMascota = ({ listaPacientes, colorAvatar }) => {
         height: "40px",
         borderRadius: "3rem",
       }}
-      className={colorAvatar() + " " + "me-2 mt-2"}
+      className={listaPacientes[index].colorAvatar + " " + "me-2 mt-2"}
     ></div>
   );
 };

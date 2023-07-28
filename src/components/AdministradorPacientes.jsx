@@ -23,24 +23,10 @@ const AdministradorPacientes = () => {
   const [hora, setHora] = useState("");
   const [sintomas, setSintomas] = useState("");
   const [listaPacientes, setListaPacientes] = useState(mascotas);
-  let colorAvatar = "";
+  const [colorAvatar, setColorAvatar] = useState("");
 
   const arregloFechas = [{ dia: dia, mes: mes, año: año }];
   const arregloHoras = [{ hora: hora, minutos: minutos }];
-
-  const arregloMascotas = [
-    {
-      nombreMascota: nombreMascota,
-      nombreDueño: nombreDueño,
-      fecha: arregloFechas,
-      horas: arregloHoras,
-      sintomas: sintomas,
-    },
-  ];
-
-  useEffect(() => {
-    localStorage.setItem("mascotas", JSON.stringify(listaPacientes));
-  }, [listaPacientes]);
 
   const colorAleatorio = () => {
     const index = Math.round(Math.random() * 7);
@@ -54,9 +40,23 @@ const AdministradorPacientes = () => {
       "verde",
       "blanco",
     ];
-    colorAvatar = colores[index];
-    return colorAvatar;
+    setColorAvatar(colores[index]);
   };
+
+  const arregloMascotas = [
+    {
+      nombreMascota: nombreMascota,
+      nombreDueño: nombreDueño,
+      fecha: arregloFechas,
+      horas: arregloHoras,
+      sintomas: sintomas,
+      colorAvatar: colorAvatar,
+    },
+  ];
+
+  useEffect(() => {
+    localStorage.setItem("mascotas", JSON.stringify(listaPacientes));
+  }, [listaPacientes]);
 
   const handleSubmit = (e) => {
     (e) => e.preventDefault(e);
@@ -69,8 +69,17 @@ const AdministradorPacientes = () => {
     setMinutos("");
     setNombreMascota("");
     setNombreDueño("");
-    colorAvatar = "";
+    setColorAvatar("");
     e.reset();
+  };
+
+  const borrarCardPaciente = (index) => {
+    let listaPacientesFiltrada = listaPacientes.filter(
+      (itemMascota, i) => index !== i
+    );
+    setListaPacientes(listaPacientesFiltrada);
+    mascotas.splice(index, 1);
+    localStorage.setItem("mascotas", JSON.stringify(listaPacientes));
   };
 
   return (
@@ -181,7 +190,12 @@ const AdministradorPacientes = () => {
             </FormGroup>
           </div>
           <div className="text-center border-top border-dark">
-            <Button variant="warning" className="my-3" type="submit">
+            <Button
+              variant="warning"
+              className="my-3"
+              type="submit"
+              onClick={colorAleatorio}
+            >
               Crear Nueva cita
             </Button>
           </div>
@@ -189,7 +203,8 @@ const AdministradorPacientes = () => {
       </section>
       <MostrarPacientes
         listaPacientes={listaPacientes}
-        colorAvatar={colorAleatorio}
+        colorAvatar={mascotas}
+        borrarCardPaciente={borrarCardPaciente}
       ></MostrarPacientes>
     </Container>
   );
