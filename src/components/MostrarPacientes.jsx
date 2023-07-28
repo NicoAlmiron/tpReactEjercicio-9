@@ -1,17 +1,18 @@
 import React, { Component } from "react";
 import CardPaciente from "./CardPaciente";
 
-export class MostrarPacientes extends Component {
-  render() {
-    return (
-      <article className="d-flex flex-wrap justify-content-between">
-        <CardPaciente></CardPaciente>
-        {/* <CardPaciente></CardPaciente>
-        <CardPaciente></CardPaciente>
-        <CardPaciente></CardPaciente> */}
-      </article>
-    );
-  }
-}
+const MostrarPacientes = ({ listaPacientes }) => {
+  return (
+    <article className="d-flex flex-wrap justify-content-evenly">
+      {listaPacientes.map((mascota, i) => (
+        <CardPaciente
+          key={i}
+          listaPacientes={listaPacientes}
+          index={i}
+        ></CardPaciente>
+      ))}
+    </article>
+  );
+};
 
 export default MostrarPacientes;
