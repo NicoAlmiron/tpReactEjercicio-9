@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Col,
@@ -11,22 +11,9 @@ import {
 } from "react-bootstrap";
 import MostrarPacientes from "./MostrarPacientes";
 
-const arregloMascotas = [
-  {
-    nombreMascota: nombreMascota,
-    nombreDueño: nombreDueño,
-    fecha: fecha,
-    horas: horas,
-    sintomas: sintomas,
-  },
-];
-const arregloFechas = [{ dia: dia, mes: mes, año: año }];
-const arregloHoras = [{ hora: hora, minutos: minutos }];
-
 const AdministradorPacientes = () => {
-  const [fecha, setFecha] = useState({});
-  const [horas, setHoras] = useState({});
-  const [mascota, setMascota] = useState({});
+  //   const mascotas = JSON.parse(localStorage.getItem("mascotas")) || [];
+
   const [nombreMascota, setNombreMascota] = useState("");
   const [nombreDueño, setNombreDueño] = useState("");
   const [dia, setDia] = useState("");
@@ -37,15 +24,31 @@ const AdministradorPacientes = () => {
   const [sintomas, setSintomas] = useState("");
   const [listaPacientes, setListaPacientes] = useState([]);
 
+  const arregloFechas = [{ dia: dia, mes: mes, año: año }];
+  const arregloHoras = [{ hora: hora, minutos: minutos }];
+
+  const arregloMascotas = [
+    {
+      nombreMascota: nombreMascota,
+      nombreDueño: nombreDueño,
+      fecha: arregloFechas,
+      horas: arregloHoras,
+      sintomas: sintomas,
+    },
+  ];
+
+  useEffect(() => {
+    localStorage.setItem("mascotas", JSON.stringify(listaPacientes));
+  }, [listaPacientes]);
+
   const handleSubmit = (e) => {
-    (e) => e.preventDefault(e);
+    e.preventDefault();
 
-    setFecha(arregloFechas);
-    setHoras(arregloHoras);
-    setMascota(arregloMascotas);
+    setListaPacientes([...listaPacientes, arregloMascotas[0]]);
 
-    console.log(e.target);
-    // e.reset();
+    // setHoras({});
+    // setFecha({});
+    // setMascota({});
   };
   return (
     <Container>
