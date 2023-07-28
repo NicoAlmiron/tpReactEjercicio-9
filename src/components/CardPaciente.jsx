@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Card, Col, Row } from "react-bootstrap";
-import AvatarMascota from "./avatarMascota";
+import AvatarMascota from "./AvatarMascota";
 
 const CardPaciente = ({
   listaPacientes,
