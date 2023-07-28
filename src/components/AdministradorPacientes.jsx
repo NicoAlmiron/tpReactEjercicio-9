@@ -23,6 +23,7 @@ const AdministradorPacientes = () => {
   const [hora, setHora] = useState("");
   const [sintomas, setSintomas] = useState("");
   const [listaPacientes, setListaPacientes] = useState(mascotas);
+  let colorAvatar = "";
 
   const arregloFechas = [{ dia: dia, mes: mes, año: año }];
   const arregloHoras = [{ hora: hora, minutos: minutos }];
@@ -41,9 +42,24 @@ const AdministradorPacientes = () => {
     localStorage.setItem("mascotas", JSON.stringify(listaPacientes));
   }, [listaPacientes]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const colorAleatorio = () => {
+    const index = Math.round(Math.random() * 7);
+    const colores = [
+      "azul",
+      "gris",
+      "celeste",
+      "naranja",
+      "rojo",
+      "negro",
+      "verde",
+      "blanco",
+    ];
+    colorAvatar = colores[index];
+    return colorAvatar;
+  };
 
+  const handleSubmit = (e) => {
+    (e) => e.preventDefault(e);
     setListaPacientes([...listaPacientes, arregloMascotas[0]]);
 
     setDia("");
@@ -53,10 +69,16 @@ const AdministradorPacientes = () => {
     setMinutos("");
     setNombreMascota("");
     setNombreDueño("");
+    colorAvatar = "";
+    e.reset();
   };
+
   return (
-    <Container>
-      <section className="border border-2 border-dark rounded-3 mx-3 shadow ">
+    <Container className="d-flex flex-column justify-content-center align-items-center">
+      <section
+        className="border border-2 border-dark rounded-3 mx-3 shadow "
+        style={{ width: "35rem" }}
+      >
         <article className="py-4 border-bottom border-dark">
           <h4 className="display-6 text-center text-warning">
             Administrador de pacientes
@@ -165,7 +187,10 @@ const AdministradorPacientes = () => {
           </div>
         </Form>
       </section>
-      <MostrarPacientes listaPacientes={listaPacientes}></MostrarPacientes>
+      <MostrarPacientes
+        listaPacientes={listaPacientes}
+        colorAvatar={colorAleatorio}
+      ></MostrarPacientes>
     </Container>
   );
 };
