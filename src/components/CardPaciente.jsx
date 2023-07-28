@@ -1,22 +1,15 @@
 import React from "react";
 import { Button, Card, Col, Row } from "react-bootstrap";
+import AvatarMascota from "./avatarMascota";
 
 const CardPaciente = ({ listaPacientes, index }) => {
   return (
     <Card
-      style={{ width: "15rem" }}
+      style={{ width: "16rem" }}
       className="m-3 border-danger border-2 shadow rounded-3"
     >
       <Card.Header className="d-flex bg-primary">
-        <div
-          style={{
-            width: "40px",
-            height: "40px",
-            background: "black",
-            borderRadius: "3rem",
-          }}
-          className="me-2 mt-2"
-        ></div>
+        <AvatarMascota listaPacientes={listaPacientes}></AvatarMascota>
         <div>
           <h5 className="text-white">
             Mascota: {listaPacientes[index].nombreMascota}

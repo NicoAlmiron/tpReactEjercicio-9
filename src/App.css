@@ -8,3 +8,35 @@
   );
   background-size: cover;
 }
+
+.azul {
+  background-color: blue;
+}
+
+.rojo {
+  background-color: red;
+}
+
+.gris {
+  background-color: grey;
+}
+
+.negro {
+  background-color: black;
+}
+
+.verde {
+  background-color: green;
+}
+
+.naranja {
+  background-color: orange;
+}
+
+.celeste {
+  background-color: skyblue;
+}
+
+.blanco {
+  background-color: white;
+}

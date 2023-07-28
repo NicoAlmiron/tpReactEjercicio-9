@@ -41,9 +41,24 @@ const AdministradorPacientes = () => {
     localStorage.setItem("mascotas", JSON.stringify(listaPacientes));
   }, [listaPacientes]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const colorAleatorio = () => {
+    const index = Math.round(Math.random() * 7);
+    const colores = [
+      "azul",
+      "gris",
+      "celeste",
+      "naranja",
+      "rojo",
+      "negro",
+      "verde",
+      "blanco",
+    ];
+    // setColorAvatar(colores[index]);
+    console.log(colores[index]);
+  };
 
+  const handleSubmit = (e) => {
+    (e) => e.preventDefault(e);
     setListaPacientes([...listaPacientes, arregloMascotas[0]]);
 
     setDia("");
@@ -53,10 +68,15 @@ const AdministradorPacientes = () => {
     setMinutos("");
     setNombreMascota("");
     setNombreDueño("");
+    e.reset();
   };
+
   return (
-    <Container>
-      <section className="border border-2 border-dark rounded-3 mx-3 shadow ">
+    <Container className="d-flex flex-column justify-content-center align-items-center">
+      <section
+        className="border border-2 border-dark rounded-3 mx-3 shadow "
+        style={{ width: "35rem" }}
+      >
         <article className="py-4 border-bottom border-dark">
           <h4 className="display-6 text-center text-warning">
             Administrador de pacientes
@@ -166,6 +186,7 @@ const AdministradorPacientes = () => {
         </Form>
       </section>
       <MostrarPacientes listaPacientes={listaPacientes}></MostrarPacientes>
+      {/* {colorAleatorio()} */}
     </Container>
   );
 };
